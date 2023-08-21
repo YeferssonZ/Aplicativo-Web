@@ -18,7 +18,7 @@
         <div class="tab-pane fade show active" id="circuito">
             <div class="row">
                 <!-- Primera columna con opciones -->
-                <div class="col-md-4">
+                <div class="col-md-4" style="height: 400px; width: 100%;">
                     <h3>Opciones</h3>
                     <ul>
                         <li>Opción 1</li>
@@ -29,12 +29,34 @@
                 <!-- Segunda columna con la imagen -->
                 <div class="col-md-8">
                     <h3>Imagen</h3>
-                    <img src="{% static 'image/image.png' %}" alt="Imagen" class="img-fluid">
+                    <img src="{% static 'image/image.png' %}" alt="Imagen" class="img-fluid restricted-image">
+                    <!-- Agrega opciones de selección junto a cada entrada -->
+                    <form>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <label for="entrada0">Entrada 0:</label>
+                                <select id="entrada0" class="form-control">
+                                    <option value="opcion1">Opción 1</option>
+                                    <option value="opcion2">Opción 2</option>
+                                    <!-- ... Agrega más opciones ... -->
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="entrada1">Entrada 1:</label>
+                                <select id="entrada1" class="form-control">
+                                    <option value="opcion1">Opción 1</option>
+                                    <option value="opcion2">Opción 2</option>
+                                    <!-- ... Agrega más opciones ... -->
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Repite el mismo patrón para las otras entradas -->
+                    </form>
                 </div>
             </div>
         </div>
         <div class="tab-pane fade" id="programa">
-            <!-- Contenido del programa -->
+            <div id="blocklyDiv" style="height: 400px; width: 100%;"></div>
         </div>
     </div>
 
@@ -52,4 +74,18 @@
         </div>
     </div>
 </div>
+
+<script>
+    var workspace = Blockly.inject('blocklyDiv', {
+        toolbox: document.getElementById('toolbox')
+    });
+</script>
+
+<xml id="toolbox" style="display: none;">
+    <block type="controls_if"></block>
+    <block type="logic_compare"></block>
+    <!-- ... Agrega más bloques ... -->
+</xml>
+
+
 {% endblock %}

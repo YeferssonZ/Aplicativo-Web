@@ -39,7 +39,32 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Apartado login Google
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '909305615965-uubh543a3frfeqi5qjkbncm717vnsjaj.apps.googleusercontent.com',
+            'secret': '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',
+        },
+        # 'AUTH_PARAMS': {
+        #     'access_type': 'online',  # O 'offline' si necesitas acceso offline
+        # },
+        # 'LOGIN_TEMPLATE': 'socialaccount/login.html',  # Ruta de tu plantilla personalizada
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'  # Redirección después de iniciar sesión con éxito
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirección después de cerrar sesión
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,8 +102,17 @@ WSGI_APPLICATION = 'emulador.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_aplicativo',
+        'USER': 'root',
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 

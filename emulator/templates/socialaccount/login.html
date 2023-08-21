@@ -19,7 +19,7 @@
       <div class="col-md-5 mx-auto">
         <div class="login-container">
           <h2 class="login-heading">Iniciar Sesión</h2>
-          <form class="login-form" method="post" action="{% url 'shop:login' %}">
+          <form class="login-form" method="post" action="{% url 'emulator:login' %}">
             {% csrf_token %}
             <div class="form-group">
               <label for="id_login">Correo Electrónico o Usuario</label>
@@ -53,7 +53,7 @@
               </button>
             </form>
           </div>
-          <p class="mt-3 text-center">¿No tienes una cuenta? <a href="{% url 'shop:signup' %}">Regístrate</a></p>
+          <p class="mt-3 text-center">¿No tienes una cuenta? <a href="{% url 'emulator:signup' %}">Regístrate</a></p>
         </div>
       </div>
       <div class="col-md-6 d-flex align-items-center">

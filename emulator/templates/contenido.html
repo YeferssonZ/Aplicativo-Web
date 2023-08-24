@@ -35,7 +35,8 @@
                             </div>
                             <div class="col-6">
                                 <label for="entrada1">Entrada 1:</label>
-                                <select id="entrada1" class="form-control">
+                                <select id="entrada1" class="form-control" onchange="handleEntrada1Change(this)">
+                                    <option value="seleccionar">Seleccionar</option>
                                     <option value="opcion1">Opción 1</option>
                                     <option value="opcion2">Opción 2</option>
                                     <!-- ... Agrega más opciones ... -->
@@ -67,10 +68,42 @@
     </div>
 </div>
 
+
 <script>
-    var workspace = Blockly.inject('blocklyDiv', {
-        toolbox: document.getElementById('toolbox')
-    });
+   var toolbox = {
+  "kind": "flyoutToolbox",
+  "contents": [
+    {
+      "kind": "block",
+      "type": "controls_if"
+    },
+    {
+      "kind": "block",
+      "type": "controls_repeat_ext"
+    },
+    {
+      "kind": "block",
+      "type": "logic_compare"
+    },
+    {
+      "kind": "block",
+      "type": "math_number"
+    },
+    {
+      "kind": "block",
+      "type": "math_arithmetic"
+    },
+    {
+      "kind": "block",
+      "type": "text"
+    },
+    {
+      "kind": "block",
+      "type": "text_print"
+    },
+  ]
+}
+var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
 </script>
 
 <xml id="toolbox" style="display: none;">

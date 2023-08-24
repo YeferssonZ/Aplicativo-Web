@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-64o4t1))_kxz6$yzte(*axt5$_5@(eu-y4$fgqsvmgza6^%aqf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,22 +47,24 @@ INSTALLED_APPS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'APP': {
-            'client_id': '909305615965-uubh543a3frfeqi5qjkbncm717vnsjaj.apps.googleusercontent.com',
-            'secret': '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',
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
         },
-        # 'AUTH_PARAMS': {
-        #     'access_type': 'online',  # O 'offline' si necesitas acceso offline
-        # },
-        # 'LOGIN_TEMPLATE': 'socialaccount/login.html',  # Ruta de tu plantilla personalizada
+        'OAUTH_PKCE_ENABLED': True,
     }
 }
 
+ACCOUNT_EMAIL_VERIFICATION = "none" 
 LOGIN_REDIRECT_URL = '/'  # Redirección después de iniciar sesión con éxito
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirección después de cerrar sesión
 

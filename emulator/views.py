@@ -1,12 +1,8 @@
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import logout, authenticate, login
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.signals import user_logged_in
 from allauth.account.views import LoginView, SignupView
-
-# Create your views here.
 
 
 def index(request):
@@ -14,9 +10,7 @@ def index(request):
 
 @login_required
 def profile(request):
-    # Obtener la información del usuario autenticado
     user = request.user
-    # Puedes agregar más detalles según tus necesidades, como el nombre, la dirección, etc.
 
     return render(request, 'profile.html', {'user': user})
 
@@ -24,8 +18,10 @@ def logout_view(request):
     logout(request)
     return redirect('emulator:index')
 
-class CustomLoginView(LoginView):
-    template_name = 'socialaccount/login.html'
+# class CustomLoginView(LoginView):
+#     template_name = 'socialaccount/login.html'
+#     success_url = '/'  # Cambia esto a la ruta que desees después del inicio de sesión exitoso
 
-class CustomSignupView(SignupView):
-    template_name = 'socialaccount/signup.html'
+# class CustomSignupView(SignupView):
+#     template_name = 'socialaccount/signup.html'
+#     success_url = '/'  # Cambia esto a la ruta que desees después del registro exitoso

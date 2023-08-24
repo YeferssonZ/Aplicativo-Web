@@ -18,10 +18,9 @@ def logout_view(request):
     logout(request)
     return redirect('emulator:index')
 
-# class CustomLoginView(LoginView):
-#     template_name = 'socialaccount/login.html'
-#     success_url = '/'  # Cambia esto a la ruta que desees después del inicio de sesión exitoso
 
-# class CustomSignupView(SignupView):
-#     template_name = 'socialaccount/signup.html'
-#     success_url = '/'  # Cambia esto a la ruta que desees después del registro exitoso
+class CustomLoginView(LoginView):
+    template_name = 'socialaccount/login.html'
+
+class CustomSignupView(SignupView):
+    template_name = 'socialaccount/signup.html'
